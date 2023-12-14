@@ -1,0 +1,66 @@
+package Ds;
+
+public class BracketBalance {
+	static char[] stack;
+	static int top;
+	public static void main(String[] args) 
+	{
+		check();
+	}
+	static boolean isEmpty()
+	{
+		return top==-1;
+	}
+	static void push(char ele)
+	{
+			top++;
+			stack[top]=ele;
+//			System.out.println(ele+" had been added");
+	}
+	static void pop()
+	{
+//			System.out.println(stack[top]+" is poped");
+			top--;
+	}
+	static void createStack(int size)
+	{
+		stack =new char[size];
+		top=-1;
+		System.out.println("stack is created with size:"+size);
+	}
+	static void check()
+	{
+		String s="(()())()";
+		int len=s.length();
+		createStack(len);
+		char []s1=s.toCharArray();
+		int flag=1;
+		if(s1[0]!=')')
+		{
+			for(int i=0;i<len;i++)
+			{
+				if(s1[i]=='(')
+				{
+					push(s1[i]);
+				}
+				else
+				{
+					pop();
+				}
+			}
+		}
+		else
+		{
+			flag=0;
+		}
+		if(flag==1 && isEmpty()==true)
+		{
+			System.out.println("balanced");
+		}
+		else
+		{
+			System.out.println("not balanced");
+		}
+		
+	}
+}
